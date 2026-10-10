@@ -83,7 +83,29 @@ Inventory Management System/
 
 ## 🧪 การทดสอบระบบ (Automated Testing)
 
-### 1. ทดสอบ Lab 5 (TDD, Characterization Tests, และ Coverage)
+### 1. ทดสอบ Lab 2 (Agile Sprint 1 - CLI Inventory System)
+```bash
+python -m unittest tests/test_lab02.py -v
+```
+ผลการทดสอบ: **7/7 ผ่านทั้งหมด (OK 100%)**
+
+### 2. ทดสอบ Lab 3 (Spec-Driven Inventory System)
+```bash
+cd inventory-sdd
+python -m unittest discover -s tests -v
+cd ..
+```
+ผลการทดสอบ: **9/9 ผ่านทั้งหมด (OK 100%)**
+
+### 3. ทดสอบ Lab 4 (Discount & Math Module)
+```bash
+cd lab04-ai-coding-ux
+python -m pytest tests/test_discount.py -v
+cd ..
+```
+ผลการทดสอบ: **6/6 ผ่านทั้งหมด (PASSED 100%)**
+
+### 4. ทดสอบ Lab 5 (TDD, Characterization Tests, และ Coverage)
 ```bash
 # ตรวจสอบ Lint ด้วย Ruff
 ruff check .
@@ -93,28 +115,6 @@ pytest tests/ --cov=. --cov-report=term-missing --cov-fail-under=85
 ```
 ผลการทดสอบ: **46/46 ผ่านทั้งหมด (100% PASSED) | Total Coverage: 92% (ผ่านเกณฑ์ >= 85%)**
 
-### 2. ทดสอบ Lab 2 (Agile Sprint 1 - CLI Inventory System)
-```bash
-python -m unittest tests/test_lab02.py -v
-```
-ผลการทดสอบ: **7/7 ผ่านทั้งหมด (OK 100%)**
-
-### 3. ทดสอบ Lab 3 (Spec-Driven Inventory System)
-```bash
-cd inventory-sdd
-python -m unittest discover -s tests -v
-cd ..
-```
-ผลการทดสอบ: **9/9 ผ่านทั้งหมด (OK 100%)**
-
-### 4. ทดสอบ Lab 4 (Discount & Math Module)
-```bash
-cd lab04-ai-coding-ux
-python -m pytest tests/test_discount.py -v
-cd ..
-```
-ผลการทดสอบ: **6/6 ผ่านทั้งหมด (PASSED 100%)**
-
 ---
 
 ## 🔗 ลิงก์สำหรับส่งงานใน eLearning (Submission Links)
@@ -122,18 +122,6 @@ cd ..
 ### ลิงก์หลักของ Repository
 - **GitHub Repository (Public):** [https://github.com/Phongsakhon870/swe-inventory-67332110095-6](https://github.com/Phongsakhon870/swe-inventory-67332110095-6)
 - **GitHub Actions Runs (CI Pipeline):** [https://github.com/Phongsakhon870/swe-inventory-67332110095-6/actions](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/actions)
-
-### ลิงก์ส่งงาน Lab 5 (TDD, Refactoring Legacy & CI/CD)
-- **ไฟล์ทดสอบ TDD & Edge Cases:** [tests/test_inventory.py](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/tests/test_inventory.py)
-- **ตาราง Test Gap Analysis:** [test-gap.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/test-gap.md)
-- **บันทึก Coverage Note:** [coverage-note.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/coverage-note.md)
-- **วิเคราะห์ Code Smells:** [smells.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/smells.md)
-- **Characterization Tests:** [tests/test_pricing_legacy.py](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/tests/test_pricing_legacy.py)
-- **โค้ด Refactored ฉบับใหม่:** [pricing.py](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/pricing.py)
-- **CI Workflow & Ruff Config:** [.github/workflows/ci.yml](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/.github/workflows/ci.yml) | [pyproject.toml](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/pyproject.toml)
-- **หลักฐานภาพหน้าจอ CI:** [screenshots/ci-green.png](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/screenshots/ci-green.png) | [screenshots/ci-red.png](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/screenshots/ci-red.png)
-- **เอกสารจริยธรรมและแนวปฏิบัติ:** [ethics.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/ethics.md)
-- **Merged Pull Request Lab 5:** [feat/low-stock-alert](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/tree/feat/low-stock-alert)
 
 ### ลิงก์ส่งงาน Lab 2 (Agile Sprint Simulation & GitHub Flow)
 - **TEAM_CHARTER.md:** [TEAM_CHARTER.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/TEAM_CHARTER.md)
@@ -153,4 +141,17 @@ cd ..
 - [lab04-ai-coding-ux/persona.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/lab04-ai-coding-ux/persona.md)
 - [lab04-ai-coding-ux/accessibility-review.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/lab04-ai-coding-ux/accessibility-review.md)
 - [lab04-ai-coding-ux/prompt-vs-context.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/lab04-ai-coding-ux/prompt-vs-context.md)
+
+### ลิงก์ส่งงาน Lab 5 (TDD, Refactoring Legacy & CI/CD)
+- **ไฟล์ทดสอบ TDD & Edge Cases:** [tests/test_inventory.py](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/tests/test_inventory.py)
+- **ตาราง Test Gap Analysis:** [test-gap.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/test-gap.md)
+- **บันทึก Coverage Note:** [coverage-note.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/coverage-note.md)
+- **วิเคราะห์ Code Smells:** [smells.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/smells.md)
+- **Characterization Tests:** [tests/test_pricing_legacy.py](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/tests/test_pricing_legacy.py)
+- **โค้ด Refactored ฉบับใหม่:** [pricing.py](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/pricing.py)
+- **CI Workflow & Ruff Config:** [.github/workflows/ci.yml](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/.github/workflows/ci.yml) | [pyproject.toml](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/pyproject.toml)
+- **หลักฐานภาพหน้าจอ CI:** [screenshots/ci-green.png](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/screenshots/ci-green.png) | [screenshots/ci-red.png](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/screenshots/ci-red.png)
+- **เอกสารจริยธรรมและแนวปฏิบัติ:** [ethics.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/ethics.md)
+- **Merged Pull Request Lab 5:** [feat/low-stock-alert](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/tree/feat/low-stock-alert)
+
 
