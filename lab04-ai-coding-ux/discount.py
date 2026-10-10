@@ -24,5 +24,7 @@ def average_price(prices: list) -> float:
 
 def cheapest_n(prices: list, n: int) -> list:
     """คืน n รายการที่ราคาถูกที่สุด เรียงจากถูกไปแพง"""
+    if n <= 0 or not prices:
+        return []
     ordered = sorted(prices)
-    return ordered[1:n]
+    return ordered[:n]
