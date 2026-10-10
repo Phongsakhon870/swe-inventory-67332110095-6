@@ -83,6 +83,32 @@ class Inventory:
         self.save_data()
         return new_item
 
+    def update_quantity(self, code: str, change_amount: int) -> dict:
+        """
+        US-03: แก้ไขจำนวนสินค้าเมื่อรับหรือจ่ายของ
+        AC-1: รับเข้าหรือจ่ายออกจำนวนที่ไม่ทำให้ติดลบ -> อัปเดตยอดคงเหลือและบันทึกทันที
+        AC-2: จ่ายออกมากกว่าจำนวนคงเหลือ -> ปฏิเสธและแสดง 'จำนวนคงเหลือไม่พอ' ยอดคงเหลือไม่เปลี่ยน
+        """
+        clean_code = code.strip().upper()
+        target_item = None
+        for item in self.items:
+            if item.get("code", "").upper() == clean_code:
+                target_item = item
+                break
+
+        if target_item is None:
+            raise KeyError(f"ไม่พบสินค้า '{code}' ในระบบ")
+
+        current_qty = target_item.get("quantity", 0)
+        new_qty = current_qty + change_amount
+
+        if new_qty < 0:
+            raise ValueError("จำนวนคงเหลือไม่พอ")
+
+        target_item["quantity"] = new_qty
+        self.save_data()
+        return target_item
+
     def format_list_display(self) -> str:
         """จัดรูปแบบการแสดงผลรายการสินค้าสำหรับ CLI Interface"""
         items = self.list_items()
@@ -119,12 +145,22 @@ def main() -> None:
                 print(f"บันทึกสินค้าใหม่ '{name}' ({code}) สำเร็จ")
             except ValueError as e:
                 print(f"เกิดข้อผิดพลาด: {e}")
+        elif cmd == "update" and len(sys.argv) >= 4:
+            code = sys.argv[2]
+            amount = int(sys.argv[3])
+            try:
+                item = inv.update_quantity(code, amount)
+                action = "รับเข้า" if amount > 0 else "จ่ายออก"
+                print(f"{action}สินค้า '{item['name']}' สำเร็จ คงเหลือ {item['quantity']} ชิ้น")
+            except (KeyError, ValueError) as e:
+                print(f"เกิดข้อผิดพลาด: {e}")
         else:
             print("คำสั่งที่รองรับ:")
             print("  python inventory.py list")
             print("  python inventory.py add <รหัส> <ชื่อ> <จำนวน> [ราคา]")
+            print("  python inventory.py update <รหัส> <จำนวนรับเข้าหรือจ่ายออก>")
     else:
-        print("คำสั่งที่รองรับ: python inventory.py list หรือ add")
+        print("คำสั่งที่รองรับ: python inventory.py list, add หรือ update")
 
 
 if __name__ == "__main__":
