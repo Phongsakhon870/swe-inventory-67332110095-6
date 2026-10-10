@@ -191,4 +191,7 @@ class InventoryService:
             try:
                 observer.on_low_stock(product)
             except Exception as exc:  # noqa: BLE001
-                print(f"[Warning] เกิดข้อผิดพลาดในการแจ้งเตือน: {exc}")
+                try:
+                    print(f"[Warning] เกิดข้อผิดพลาดในการแจ้งเตือน: {exc}")
+                except UnicodeEncodeError:
+                    pass

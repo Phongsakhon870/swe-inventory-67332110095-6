@@ -62,7 +62,11 @@ class EmailNotifier:
         """
         ส่งข้อความทาง Email (จำลองด้วย print ตามกฎข้อห้ามของโปรเจกต์)
         """
-        print(f"[Email] ถึง {recipient}: {message}")
+        text = f"[Email] ถึง {recipient}: {message}"
+        try:
+            print(text)
+        except UnicodeEncodeError:
+            print(text.encode("utf-8", errors="replace").decode("utf-8", errors="replace"))
         return True
 
     def on_low_stock(self, product: Product) -> None:
@@ -94,7 +98,11 @@ class SMSNotifier:
         """
         ส่งข้อความทาง SMS (จำลองด้วย print ตามกฎข้อห้ามของโปรเจกต์)
         """
-        print(f"[SMS] ถึง {recipient}: {message}")
+        text = f"[SMS] ถึง {recipient}: {message}"
+        try:
+            print(text)
+        except UnicodeEncodeError:
+            print(text.encode("utf-8", errors="replace").decode("utf-8", errors="replace"))
         return True
 
     def on_low_stock(self, product: Product) -> None:
