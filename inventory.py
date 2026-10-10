@@ -54,6 +54,35 @@ class Inventory:
         """
         return list(self.items)
 
+    def add_item(self, code: str, name: str, quantity: int = 0, price: float = 0.0) -> dict:
+        """
+        US-02: เพิ่มสินค้าใหม่เข้าระบบ
+        AC-1: ยังไม่มีสินค้ารหัสนี้ -> บันทึกสินค้าใหม่ และแสดงเมื่อเรียก list
+        AC-2: มีสินค้ารหัสนี้อยู่แล้ว -> ปฏิเสธและแจ้ง 'รหัสสินค้าซ้ำ' โดยไม่เขียนทับ
+        """
+        clean_code = code.strip().upper()
+        clean_name = name.strip()
+
+        if not clean_code or not clean_name:
+            raise ValueError("รหัสสินค้าและชื่อสินค้าต้องไม่ว่างเปล่า")
+
+        if quantity < 0:
+            raise ValueError("จำนวนสินค้าเริ่มต้นต้องไม่ติดลบ")
+
+        for item in self.items:
+            if item.get("code", "").upper() == clean_code:
+                raise ValueError("รหัสสินค้าซ้ำ")
+
+        new_item = {
+            "code": clean_code,
+            "name": clean_name,
+            "quantity": quantity,
+            "price": max(0.0, float(price)),
+        }
+        self.items.append(new_item)
+        self.save_data()
+        return new_item
+
     def format_list_display(self) -> str:
         """จัดรูปแบบการแสดงผลรายการสินค้าสำหรับ CLI Interface"""
         items = self.list_items()
@@ -76,10 +105,26 @@ class Inventory:
 
 def main() -> None:
     inv = Inventory()
-    if len(sys.argv) > 1 and sys.argv[1] == "list":
-        print(inv.format_list_display())
+    if len(sys.argv) > 1:
+        cmd = sys.argv[1].lower()
+        if cmd == "list":
+            print(inv.format_list_display())
+        elif cmd == "add" and len(sys.argv) >= 4:
+            code = sys.argv[2]
+            name = sys.argv[3]
+            qty = int(sys.argv[4]) if len(sys.argv) > 4 else 0
+            price = float(sys.argv[5]) if len(sys.argv) > 5 else 0.0
+            try:
+                inv.add_item(code, name, qty, price)
+                print(f"บันทึกสินค้าใหม่ '{name}' ({code}) สำเร็จ")
+            except ValueError as e:
+                print(f"เกิดข้อผิดพลาด: {e}")
+        else:
+            print("คำสั่งที่รองรับ:")
+            print("  python inventory.py list")
+            print("  python inventory.py add <รหัส> <ชื่อ> <จำนวน> [ราคา]")
     else:
-        print("คำสั่งที่รองรับ: python inventory.py list")
+        print("คำสั่งที่รองรับ: python inventory.py list หรือ add")
 
 
 if __name__ == "__main__":
