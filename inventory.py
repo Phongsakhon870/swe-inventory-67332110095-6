@@ -108,6 +108,49 @@ class Inventory:
         self.save_data()
         return target_item
 
+    def low_stock_items(self, threshold: int) -> list[dict]:
+        """
+        ค้นหารายชื่อสินค้าที่มีจำนวนคงเหลือ น้อยกว่าหรือเท่ากับ threshold
+
+        Args:
+            threshold: ระดับจำนวนสินค้าขั้นต่ำที่ต้องการตรวจสอบ
+
+        Returns:
+            รายการสินค้าที่คงเหลือน้อยกว่าหรือเท่ากับ threshold เรียงตามชื่อ (A-Z / ก-ฮ)
+        """
+        if threshold < 0:
+            return []
+
+        qualifying_items = [
+            item for item in self.items
+            if item.get("quantity", 0) <= threshold
+        ]
+        return sorted(qualifying_items, key=lambda item: item.get("name", ""))
+
+    def sell(self, code: str, quantity: int) -> dict:
+        """
+        ขายสินค้าออกจากคลังตามจำนวนที่ระบุ
+
+        Args:
+            code: รหัสสินค้า
+            quantity: จำนวนที่ต้องการขาย (ต้องเป็นจำนวนเต็มบวก > 0)
+
+        Returns:
+            ข้อมูลสินค้าหลังการตัดสต็อก
+
+        Raises:
+            TypeError: หากจำนวนที่ระบุไม่ใช่จำนวนเต็ม (int)
+            ValueError: หากจำนวนที่ระบุ <= 0 หรือมากกว่ายอดคงเหลือ
+            KeyError: หากไม่พบรหัสสินค้าในระบบ
+        """
+        if not isinstance(quantity, int) or isinstance(quantity, bool):
+            raise TypeError("จำนวนสินค้าต้องเป็นจำนวนเต็ม (integer)")
+
+        if quantity <= 0:
+            raise ValueError("จำนวนสินค้าที่ขายต้องมากกว่า 0")
+
+        return self.update_quantity(code, -quantity)
+
     def format_list_display(self) -> str:
         """จัดรูปแบบการแสดงผลรายการสินค้าสำหรับ CLI Interface"""
         items = self.list_items()
