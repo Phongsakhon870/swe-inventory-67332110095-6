@@ -7,6 +7,8 @@
 - **Lab 4:** การออกแบบ UX, Code Review โค้ดที่ AI สร้าง และ Evidence-Based Debugging
 - **Lab 5:** TDD เป็นตาข่ายกันพลาด, Refactoring โค้ด Legacy ด้วย Characterization Tests, CI/CD Pipeline และจริยธรรม AI
 
+> 📋 **สำหรับผู้ตรวจประเมินโครงงาน:** ตรวจสอบสารบัญผลงาน 5 หัวข้อหลักพร้อมลิงก์โดยตรงได้ที่ [PROJECT.md](PROJECT.md)
+
 ---
 
 ## 📂 โครงสร้างไดเรกทอรี (Directory Structure)
@@ -14,6 +16,7 @@
 ```text
 Inventory Management System/
 │
+├── PROJECT.md                      # เอกสารสารบัญหลักสำหรับตรวจประเมินโครงงาน 5 หัวข้อ
 ├── .github/
 │   └── workflows/
 │       └── ci.yml                  # GitHub Actions CI Workflow (Ruff Lint + Pytest Coverage >= 85%) (Lab 5)
