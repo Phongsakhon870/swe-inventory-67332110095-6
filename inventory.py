@@ -127,6 +127,30 @@ class Inventory:
         ]
         return sorted(qualifying_items, key=lambda item: item.get("name", ""))
 
+    def sell(self, code: str, quantity: int) -> dict:
+        """
+        ขายสินค้าออกจากคลังตามจำนวนที่ระบุ
+
+        Args:
+            code: รหัสสินค้า
+            quantity: จำนวนที่ต้องการขาย (ต้องเป็นจำนวนเต็มบวก > 0)
+
+        Returns:
+            ข้อมูลสินค้าหลังการตัดสต็อก
+
+        Raises:
+            TypeError: หากจำนวนที่ระบุไม่ใช่จำนวนเต็ม (int)
+            ValueError: หากจำนวนที่ระบุ <= 0 หรือมากกว่ายอดคงเหลือ
+            KeyError: หากไม่พบรหัสสินค้าในระบบ
+        """
+        if not isinstance(quantity, int) or isinstance(quantity, bool):
+            raise TypeError("จำนวนสินค้าต้องเป็นจำนวนเต็ม (integer)")
+
+        if quantity <= 0:
+            raise ValueError("จำนวนสินค้าที่ขายต้องมากกว่า 0")
+
+        return self.update_quantity(code, -quantity)
+
     def format_list_display(self) -> str:
         """จัดรูปแบบการแสดงผลรายการสินค้าสำหรับ CLI Interface"""
         items = self.list_items()
