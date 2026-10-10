@@ -70,17 +70,17 @@ python -m pytest tests/test_discount.py -v
 ## 🔗 ลิงก์สำหรับส่งงานใน eLearning (Submission Links)
 
 ### ลิงก์หลักของ Repository
-- **GitHub Repository:** [https://github.com/Phongsakhon870/Inventory-Management-System](https://github.com/Phongsakhon870/Inventory-Management-System)
+- **GitHub Repository:** [https://github.com/Phongsakhon870/swe-inventory-67332110095-6](https://github.com/Phongsakhon870/swe-inventory-67332110095-6)
 
 ### ลิงก์ส่งงาน Lab 3
-- [inventory-sdd/specs/spec.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/inventory-sdd/specs/spec.md)
-- [inventory-sdd/.ai-rules.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/inventory-sdd/.ai-rules.md)
-- [inventory-sdd/design_review.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/inventory-sdd/design_review.md)
-- [inventory-sdd/AI_ITERATION_LOG.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/inventory-sdd/AI_ITERATION_LOG.md)
+- [inventory-sdd/specs/spec.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/inventory-sdd/specs/spec.md)
+- [inventory-sdd/.ai-rules.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/inventory-sdd/.ai-rules.md)
+- [inventory-sdd/design_review.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/inventory-sdd/design_review.md)
+- [inventory-sdd/AI_ITERATION_LOG.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/inventory-sdd/AI_ITERATION_LOG.md)
 
 ### ลิงก์ส่งงาน Lab 4
-- **Code Review Document:** [lab04-ai-coding-ux/code-review.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/lab04-ai-coding-ux/code-review.md)
-- **Evidence-Based Debug Log:** [lab04-ai-coding-ux/debug-log.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/lab04-ai-coding-ux/debug-log.md)
-- **Persona & Journey Map:** [lab04-ai-coding-ux/persona.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/lab04-ai-coding-ux/persona.md)
-- **Accessibility Review:** [lab04-ai-coding-ux/accessibility-review.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/lab04-ai-coding-ux/accessibility-review.md)
-- **Prompt vs Context Engineering:** [lab04-ai-coding-ux/prompt-vs-context.md](https://github.com/Phongsakhon870/Inventory-Management-System/blob/main/lab04-ai-coding-ux/prompt-vs-context.md)
+- **Code Review Document:** [lab04-ai-coding-ux/code-review.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/lab04-ai-coding-ux/code-review.md)
+- **Evidence-Based Debug Log:** [lab04-ai-coding-ux/debug-log.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/lab04-ai-coding-ux/debug-log.md)
+- **Persona & Journey Map:** [lab04-ai-coding-ux/persona.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/lab04-ai-coding-ux/persona.md)
+- **Accessibility Review:** [lab04-ai-coding-ux/accessibility-review.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/lab04-ai-coding-ux/accessibility-review.md)
+- **Prompt vs Context Engineering:** [lab04-ai-coding-ux/prompt-vs-context.md](https://github.com/Phongsakhon870/swe-inventory-67332110095-6/blob/main/lab04-ai-coding-ux/prompt-vs-context.md)
