@@ -111,16 +111,21 @@ class Inventory:
     def low_stock_items(self, threshold: int) -> list[dict]:
         """
         ค้นหารายชื่อสินค้าที่มีจำนวนคงเหลือ น้อยกว่าหรือเท่ากับ threshold
-        คืนผลลัพธ์โดยเรียงตามชื่อสินค้า (A-Z / ก-ฮ)
+
+        Args:
+            threshold: ระดับจำนวนสินค้าขั้นต่ำที่ต้องการตรวจสอบ
+
+        Returns:
+            รายการสินค้าที่คงเหลือน้อยกว่าหรือเท่ากับ threshold เรียงตามชื่อ (A-Z / ก-ฮ)
         """
         if threshold < 0:
             return []
 
-        matched = [
+        qualifying_items = [
             item for item in self.items
             if item.get("quantity", 0) <= threshold
         ]
-        return sorted(matched, key=lambda x: x.get("name", ""))
+        return sorted(qualifying_items, key=lambda item: item.get("name", ""))
 
     def format_list_display(self) -> str:
         """จัดรูปแบบการแสดงผลรายการสินค้าสำหรับ CLI Interface"""
