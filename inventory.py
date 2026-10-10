@@ -4,7 +4,6 @@
 """
 
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -34,7 +33,7 @@ class Inventory:
             return self.items
 
         try:
-            with open(self.data_path, "r", encoding="utf-8") as f:
+            with open(self.data_path, encoding="utf-8") as f:
                 self.items = json.load(f)
         except (json.JSONDecodeError, OSError):
             self.items = []
