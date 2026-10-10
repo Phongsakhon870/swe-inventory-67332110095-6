@@ -2,7 +2,9 @@
 
 def apply_discount(price: float, percent: float) -> float:
     """ลดราคาตาม percent (0-100) คืนราคาหลังลด"""
-    return price - percent / 100
+    if percent < 0 or percent > 100:
+        raise ValueError("เปอร์เซ็นต์ส่วนลดต้องอยู่ระหว่าง 0 ถึง 100")
+    return price * (1.0 - percent / 100.0)
 
 
 def bulk_total(prices: list, discount_percent: float) -> float:
