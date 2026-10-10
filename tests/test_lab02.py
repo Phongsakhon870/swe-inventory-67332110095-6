@@ -79,6 +79,45 @@ class TestLab02Inventory(unittest.TestCase):
         self.assertEqual(items[0]["name"], "สมุดโน้ต")
         self.assertEqual(items[0]["quantity"], 10)
 
+    # -------------------------------------------------------------
+    # US-03: แก้ไขจำนวนสินค้าเมื่อรับหรือจ่ายของ
+    # -------------------------------------------------------------
+    def test_us03_ac1_update_quantity_success(self) -> None:
+        """AC-1: Given รับเข้าหรือจ่ายออกที่ไม่ติดลบ -> อัปเดตยอดคงเหลือและบันทึกทันที"""
+        inv = Inventory(self.data_file)
+        inv.add_item("P01", "ดินสอกด", 10, 35.0)
+
+        # รับเข้า +5
+        updated = inv.update_quantity("P01", 5)
+        self.assertEqual(updated["quantity"], 15)
+
+        # จ่ายออก -3
+        updated = inv.update_quantity("P01", -3)
+        self.assertEqual(updated["quantity"], 12)
+
+        # ตรวจสอบการบันทึกในไฟล์
+        inv2 = Inventory(self.data_file)
+        self.assertEqual(inv2.list_items()[0]["quantity"], 12)
+
+    def test_us03_ac2_excessive_deduction_rejected(self) -> None:
+        """AC-2: Given จ่ายออกมากกว่าคงเหลือ -> ปฏิเสธ 'จำนวนคงเหลือไม่พอ' ยอดคงเหลือไม่เปลี่ยน"""
+        inv = Inventory(self.data_file)
+        inv.add_item("P02", "ไม้บรรทัด", 5, 12.0)
+
+        with self.assertRaises(ValueError) as ctx:
+            inv.update_quantity("P02", -10)
+
+        self.assertIn("จำนวนคงเหลือไม่พอ", str(ctx.exception))
+        self.assertEqual(inv.list_items()[0]["quantity"], 5)
+
+    def test_us03_item_not_found(self) -> None:
+        """ทดสอบกรณีรหัสสินค้าไม่มีอยู่ในระบบ"""
+        inv = Inventory(self.data_file)
+        with self.assertRaises(KeyError) as ctx:
+            inv.update_quantity("NONE", 5)
+        self.assertIn("ไม่พบสินค้า", str(ctx.exception))
+
 
 if __name__ == "__main__":
     unittest.main()
+
